@@ -24,7 +24,7 @@ namespace MySqlDB
         private SqlDB(string con)
         {
             connection = new SqlConnection(con);
-            connection.Open();
+            //connection.Open();
         }
 
         static public SqlDB CreRefSqlDB(string con) {
