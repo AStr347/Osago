@@ -10,7 +10,7 @@ namespace WindowsFormsApp2
     {
         protected Panel MainPanel;
 
-        public Control Draw()
+        virtual public Control Draw()
         {
             return MainPanel;
         }

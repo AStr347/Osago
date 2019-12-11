@@ -3,10 +3,13 @@ using System.Data.SqlClient;
 using MySqlDB;
 namespace WindowsFormsApp2
 {
-    class Car : ITabRow 
+    /// <summary>
+    /// Класс представляет собой машины в моей БД
+    /// </summary>
+    class Car : ATabRow 
     {
-        public string id, GosNum, Mark, Model;
-        bool track;
+        public string GosNum, Mark, Model;
+        public bool track;
         public Car(string id, string gosnum, string mark, string model, bool track) {
             this.id = id;
             GosNum = gosnum;
@@ -15,7 +18,11 @@ namespace WindowsFormsApp2
             this.track = track;
         }
 
-        public string ToValues()
+        public Car(SqlDataReader reader) {
+            FromSqlDataReader(reader);
+        }
+
+        override public string ToValues()
         {
             return string.Format("'{0}', '{1}', '{2}', '{3}', {4}", id, GosNum, Mark, Model, track? 1 : 0);
         }
@@ -25,13 +32,13 @@ namespace WindowsFormsApp2
             return string.Format("{0}\t{1}\t{2}\t{3}\t{4}", id, GosNum, Mark, Model, track);
         }
 
-        public void FromSqlDataReader(SqlDataReader reader)
+        override public void FromSqlDataReader(SqlDataReader reader)
         {
             id = reader.GetString(0);
-            GosNum = reader.GetString(0);
-            Mark = reader.GetString(0);
-            Model = reader.GetString(0);
-            track = reader.GetBoolean(0);
+            GosNum = reader.GetString(1);
+            Mark = reader.GetString(2);
+            Model = reader.GetString(3);
+            track = reader.GetBoolean(4);
         }
     }
 }

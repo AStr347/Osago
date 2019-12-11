@@ -32,7 +32,6 @@
             this.создатьПолисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.просмотрToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.всехToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ТаблицаизБДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,8 +56,7 @@
             // просмотрToolStripMenuItem
             // 
             this.просмотрToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.всехToolStripMenuItem,
-            this.ТаблицаизБДToolStripMenuItem});
+            this.всехToolStripMenuItem});
             this.просмотрToolStripMenuItem.Name = "просмотрToolStripMenuItem";
             this.просмотрToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.просмотрToolStripMenuItem.Text = "Просмотр";
@@ -69,13 +67,6 @@
             this.всехToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.всехToolStripMenuItem.Text = "Всех";
             this.всехToolStripMenuItem.Click += new System.EventHandler(this.ViewClick);
-            // 
-            // ТаблицаизБДToolStripMenuItem
-            // 
-            this.ТаблицаизБДToolStripMenuItem.Name = "ТаблицаизБДToolStripMenuItem";
-            this.ТаблицаизБДToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ТаблицаизБДToolStripMenuItem.Text = "Таблица из БД";
-            this.ТаблицаизБДToolStripMenuItem.Click += new System.EventHandler(this.ViewDBClick);
             // 
             // Form1
             // 
@@ -99,7 +90,6 @@
         private System.Windows.Forms.ToolStripMenuItem создатьПолисToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem просмотрToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem всехToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ТаблицаизБДToolStripMenuItem;
     }
 }
 

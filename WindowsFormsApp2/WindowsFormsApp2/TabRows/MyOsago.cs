@@ -4,19 +4,22 @@ using MySqlDB;
 
 namespace MyOsago
 {
-
-    class Osago : ITabRow
+    /// <summary>
+    /// Класс представляет собой Полис Осаго из моей БД
+    /// </summary>
+    class Osago : ATabRow
     {
-        int IdInsurant, IdOwner, IdFaces, Price;
-        DateTime    BegDate, EndDate, ConDate;
-        string SerNum, IdCar;
+        public string IdInsurant, IdOwner, IdFaces;
+        public int Price;
+        public DateTime    BegDate, EndDate, ConDate;
+        public string SerNum, IdCar;
 
         public Osago(SqlDataReader reader)
         {
             FromSqlDataReader(reader);
         }
 
-        public Osago(string sernum, int idInsurant, int idOwner, string idCar, int idFaces, DateTime idBegDate, DateTime idEndDate, DateTime idConDate, int price)
+        public Osago(string sernum, string idInsurant, string idOwner, string idCar, string idFaces, DateTime idBegDate, DateTime idEndDate, DateTime idConDate, int price)
         {
             SerNum = sernum;
             IdInsurant = idInsurant;
@@ -27,6 +30,7 @@ namespace MyOsago
             EndDate = idEndDate;
             ConDate = idConDate;
             Price = price;
+            id = SerNum;
         }
 
         private string DateTimeToSqlDateString() {
@@ -39,7 +43,7 @@ namespace MyOsago
         /// Метод для конвертации даннго класса в строку подходящюю для Sql команды INSERT ... VALUES(...)
         /// </summary>
         /// <returns> Строку подходящую для Sql команды INSERT ... VALUES(id, IdInsurant, IdOwner, IdCar, IdFaces, BegDate, EndDate, ConDate, Price)</returns>
-        public string ToValues()
+        override public string ToValues()
         {
             return string.Format("'{0}' , {1} , {2} , '{3}' , {4} , {5} , {6}",
                             SerNum, IdInsurant, IdOwner, IdCar, IdFaces, DateTimeToSqlDateString(), Price);
@@ -49,16 +53,17 @@ namespace MyOsago
         /// Метод для чтения значений из SqlDataReader в данный класс
         /// </summary>
         /// <param name="reader"> Аргумент из которого будут получены значения. Должен соответствовать SELECT * FROM (таблица соответствующая данному классу)</param>
-        public void FromSqlDataReader(SqlDataReader reader) {
-            SerNum = Convert.ToString(reader.GetValue(0));
-            IdInsurant = Convert.ToInt32(reader.GetValue(1));
-            IdOwner = Convert.ToInt32(reader.GetValue(2));
-            IdCar = Convert.ToString(reader.GetValue(3));
-            IdFaces = Convert.ToInt32(reader.GetValue(4));
-            BegDate = Convert.ToDateTime(reader.GetValue(5));
-            EndDate = Convert.ToDateTime(reader.GetValue(6));
-            ConDate = Convert.ToDateTime(reader.GetValue(7));
-            Price = Convert.ToInt32(reader.GetValue(8));
+        override public void FromSqlDataReader(SqlDataReader reader) {
+            SerNum = reader.GetString(0);
+            IdInsurant = reader.GetString(1);
+            IdOwner = reader.GetString(2);
+            IdCar = reader.GetString(3);
+            IdFaces = reader.GetString(4);
+            BegDate = reader.GetDateTime(5);
+            EndDate = reader.GetDateTime(6);
+            ConDate = reader.GetDateTime(7);
+            Price = reader.GetInt32(8);
+            id = SerNum;
         }
 
         public override string ToString()
@@ -66,5 +71,6 @@ namespace MyOsago
             return string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}",
                             SerNum, IdInsurant, IdOwner, IdCar, IdFaces, BegDate.ToShortDateString(), EndDate.ToShortDateString(), ConDate.ToShortDateString(), Price);
         }
+
     }
 }

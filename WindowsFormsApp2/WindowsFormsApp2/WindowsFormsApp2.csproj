@@ -47,27 +47,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbMenu.cs" />
-    <Compile Include="Car.cs" />
-    <Compile Include="OsagoAddMenu.cs" />
+    <Compile Include="ViewAdd\AbMenu.cs" />
+    <Compile Include="TabRows\Car.cs" />
+    <Compile Include="ViewAdd\OsagoAddMenu.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyOsago.cs" />
-    <Compile Include="OsagoAddMenu.Designer.cs">
+    <Compile Include="TabRows\MyOsago.cs" />
+    <Compile Include="ViewAdd\OsagoAddMenu.Designer.cs">
       <DependentUpon>OsagoAddMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="PassPort.cs" />
+    <Compile Include="TabRows\PassPort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlDb.cs" />
-    <Compile Include="ViewOsagoDB.cs" />
-    <Compile Include="ViewOsagoDB.Designer.cs" />
-    <Compile Include="ViewOsagoMenu.cs" />
-    <Compile Include="ViewOsagoMenu.Designer.cs">
+    <Compile Include="ViewAdd\ViewOsagoDB.cs" />
+    <Compile Include="ViewAdd\ViewOsagoDB.Designer.cs" />
+    <Compile Include="ViewAdd\ViewOsagoMenu.cs" />
+    <Compile Include="ViewAdd\ViewOsagoMenu.Designer.cs">
       <DependentUpon>ViewOsagoMenu.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">

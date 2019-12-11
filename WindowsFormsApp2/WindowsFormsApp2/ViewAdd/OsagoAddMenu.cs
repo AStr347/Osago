@@ -17,7 +17,7 @@ namespace WindowsFormsApp2
         private PassPort owner = null;
         private Car car = null;
 
-        private SqlDB Sql = SqlDB.CreRefSqlDB(@"Data Source=.\SQLEXPRESS;Initial Catalog=MyOsago;Integrated Security=True");
+        private SqlDB Sql = SqlDB.CreRefSqlDB();
         bool Insertcar = false;
         bool Insertosago = false;
         bool InsertInsurant = false;
@@ -80,7 +80,7 @@ namespace WindowsFormsApp2
                 Int32.TryParse(Price.Text, out int price);
                 DateTime conDate = ConDate.Value;
 
-                osago = new Osago(SerNum, insurant.id, owner.id, car.id, 0, Begdate, Enddate, conDate, price);
+                osago = new Osago(SerNum, insurant.id, owner.id, car.id, "0", Begdate, Enddate, conDate, price);
                 if (Sql.TryInsert("Osago", osago))
                 {
                     Insertosago = true;

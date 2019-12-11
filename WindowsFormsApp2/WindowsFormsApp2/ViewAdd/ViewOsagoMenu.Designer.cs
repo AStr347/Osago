@@ -55,6 +55,7 @@ namespace WindowsFormsApp2
             this.Prev.TabIndex = 0;
             this.Prev.Text = "<";
             this.Prev.UseVisualStyleBackColor = true;
+            this.Prev.Click += Dec;
             // 
             // Next
             // 
@@ -64,6 +65,7 @@ namespace WindowsFormsApp2
             this.Next.TabIndex = 1;
             this.Next.Text = ">";
             this.Next.UseVisualStyleBackColor = true;
+            this.Next.Click += Inc;
             // 
             // label1
             // 
