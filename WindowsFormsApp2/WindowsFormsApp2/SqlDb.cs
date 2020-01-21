@@ -38,8 +38,8 @@ namespace MySqlDB
         /// </summary>
         static public SqlDB CreRefSqlDB() {
             if (sqlDB == null)
-                //172.16.0.12
-                sqlDB = new SqlDB(@"Data Source=TCP:172.16.0.12\SQLEXPRESS;Initial Catalog=MyOsago;Persist Security Info=True;User ID=AStr347;Password=212212qwe");
+                
+                sqlDB = new SqlDB(@"Data Source=3-110-14\SQLEXPRESS;Initial Catalog=MyOsago;Persist Security Info=True;User ID=svist;Password=212212Qwe");
                 //sqlDB = new SqlDB(@"Data Source=.\SQLEXPRESS;Initial Catalog=MyOsago;Persist Security Info=True;User ID=sa;Password=212212qwe");
             return sqlDB;
         }
