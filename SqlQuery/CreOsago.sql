@@ -9,34 +9,18 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Osago](
-	[Id] [nchar](15) NOT NULL,
-	[IdInsurant] [nchar](20) NOT NULL,
-	[IdOwner] [nchar](20) NOT NULL,
-	[IdCar] [nchar](20) NOT NULL,
-	[IdFaces] [nchar](20) NOT NULL,
-	[BegDate] [date] NOT NULL,
-	[EndDate] [date] NOT NULL,
-	[ConDate] [date] NOT NULL,
-	[Prize] [int] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
-UNIQUE NONCLUSTERED 
-(
-	[IdCar] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
-ALTER TABLE [dbo].[Osago]  WITH CHECK ADD FOREIGN KEY([IdCar])
-REFERENCES [dbo].[Cars] ([Id])
-GO
-
-ALTER TABLE [dbo].[Osago]  WITH CHECK ADD FOREIGN KEY([IdInsurant])
-REFERENCES [dbo].[Insurant] ([Id])
-GO
-
-ALTER TABLE [dbo].[Osago]  WITH CHECK ADD FOREIGN KEY([IdOwner])
-REFERENCES [dbo].[Owner] ([Id])
+	[Id] [nchar](15) NOT NULL PRIMARY KEY, /*Серия + номер полиса формата ККК0000000000*/
+	
+	[IdInsurant] [nchar](20) NOT NULL FOREIGN KEY REFERENCES [dbo].[Insurant] ([Id]), /*id страхователя из таблицы Insurant*/
+	[IdOwner] [nchar](20) NOT NULL FOREIGN KEY REFERENCES [dbo].[Owner] ([Id]), /*id Страхуемого из даблицы Owner*/
+	[IdCar] [nchar](20) NOT NULL FOREIGN KEY REFERENCES [dbo].[Cars] ([Id]), /*id Машины из таблицы Cars*/
+	[IdFaces] [nchar](20) NOT NULL, /*Ключ к таблице Faces*/
+	
+	[BegDate] [date] NOT NULL, /*Дата начала действия страховки*/
+	[EndDate] [date] NOT NULL, /*Дата конца действия страховки*/
+	[ConDate] [date] NOT NULL, /*Дата залючения страховки*/
+	
+	[Prize] [int] NOT NULL, /*Выплата по страховке с учетом тарифа*/
+	
+)
 GO

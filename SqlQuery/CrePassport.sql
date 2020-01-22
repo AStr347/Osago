@@ -7,79 +7,57 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+/*Таблица страховщиков*/
 CREATE TABLE [dbo].[Insurant](
-	[Id] [nchar](20) NOT NULL,
-	[FullName] [nchar](100) NOT NULL,
-	[TYPE] [bit] NOT NULL,
-	
-	[SerNumPass] [nchar](20) NULL,
-	[SerNumVod] [nchar](20) NULL,
-	[Who] [nchar](20) NULL,
-	[Adress] [nchar](50) NULL,
-	[When] [date] NULL,
-	
+	[Id] [nchar](20) NOT NULL PRIMARY KEY, /*id в таблице*/
+	[FullName] [nchar](100) NOT NULL, /*ФИО или Название организации*/
+	[TYPE] [bit] NOT NULL, /*Тип Страховщика (0 - Физ лицо 1 - Юр лицо)*/
+	/*Для Физ лиц*/
+	[SerNumPass] [nchar](20) NULL,/*Серия и номер паспорта*/
+	[SerNumVod] [nchar](20) NULL,/*Серия и номер водительских прав*/
+	[Who] [nchar](20) NULL,/*Кем выдан паспорт*/
+	[Adress] [nchar](50) NULL,/*Прописка*/
+	[When] [date] NULL,/*Когда выдан паспорт*/
+	/*Для Юр лиц*/
 	[INN] [nchar](20) NULL,
 	[OGRN] [nchar](20) NULL,
-	[PType] [nchar](20) NULL,
-	[Schet] [nchar](20) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
+	[PType] [nchar](20) NULL,/*Организационно правовая форма*/
+	[Schet] [nchar](20) NULL,/*Расчетный счет*/
+	
+)
 GO
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+/*Таблица Собственников*/
 CREATE TABLE [dbo].[Owner](
-	[Id] [nchar](20) NOT NULL,
-	[FullName] [nchar](100) NOT NULL,
-	[TYPE] [bit] NOT NULL,
-	
-	[SerNumPass] [nchar](20) NULL,
-	[SerNumVod] [nchar](20) NULL,
-	[Who] [nchar](20) NULL,
-	[Adress] [nchar](50) NULL,
-	[When] [date] NULL,
-	
-	[INN] [nchar](20) NULL,
-	[OGRN] [nchar](20) NULL,
-	[PType] [nchar](20) NULL,
-	[Schet] [nchar](20) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
+	[Id] [nchar](20) NOT NULL PRIMARY KEY, /*id в таблице*/
+	[FullName] [nchar](100) NOT NULL, /*ФИО*/
+	/*Для Физ лиц*/
+	[SerNumPass] [nchar](20) NULL,/*Серия и номер паспорта*/
+	[SerNumVod] [nchar](20) NULL,/*Серия и номер водительских прав*/
+	[Who] [nchar](20) NULL,/*Кем выдан паспорт*/
+	[Adress] [nchar](50) NULL,/*Прописка*/
+	[When] [date] NULL,/*Когда выдан паспорт*/
+)
 GO
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
-CREATE TABLE [dbo].[CarMans](
-	[Id] [nchar](20) NOT NULL,
-	[FullName] [nchar](100) NOT NULL,
-	[TYPE] [bit] NOT NULL,
-	
-	[SerNumPass] [nchar](20) NULL,
-	[SerNumVod] [nchar](20) NULL,
-	[Who] [nchar](20) NULL,
-	[Adress] [nchar](50) NULL,
-	[When] [date] NULL,
-	
-	[INN] [nchar](20) NULL,
-	[OGRN] [nchar](20) NULL,
-	[PType] [nchar](20) NULL,
-	[Schet] [nchar](20) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
+/*Таблица Лиц допущенных к управлению ТС*/
+CREATE TABLE [dbo].[Faces](
+	[Id] [nchar](20) NOT NULL PRIMARY KEY, /*id в таблице*/
+	[FullName] [nchar](100) NOT NULL, /*ФИО*/
+	[TKey] [nchar](20) NOT NULL, /*Ключ для осуществления выборки лиц допущенных к управлению по опред полису ОСАГО*/
+	/*Для Физ лиц*/
+	[SerNumPass] [nchar](20) NULL,/*Серия и номер паспорта*/
+	[SerNumVod] [nchar](20) NULL,/*Серия и номер водительских прав*/
+	[Who] [nchar](20) NULL,/*Кем выдан паспорт*/
+	[Adress] [nchar](50) NULL,/*Прописка*/
+	[When] [date] NULL,/*Когда выдан паспорт*/
+)
 GO
 
 

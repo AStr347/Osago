@@ -9,17 +9,16 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Cars](
-	[Id] [nchar](20) NOT NULL,
-	[Number] [nchar](20) NULL,
+	[Id] [nchar](20) NOT NULL PRIMARY KEY, /*VIN*/
+	[Number] [nchar](20) NULL, /*Гос номер*/
+	
 	[Brand] [nchar](20) NOT NULL,
 	[Model] [nchar](20) NOT NULL,
+	
 	[Trailer] [bit] NOT NULL,
-	[ENGINEPOW] [int] NULL,
-	[VENGINE] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	
+	[ENGINEPOW] [int] NULL, /*Мощьность двигателя*/
+	[VENGINE] [int] NULL, /*Объем двигателя*/
 ) ON [PRIMARY]
 GO
 
