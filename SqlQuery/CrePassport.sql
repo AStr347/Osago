@@ -12,12 +12,14 @@ CREATE TABLE [dbo].[Insurant](
 	[Id] [nchar](20) NOT NULL PRIMARY KEY, /*id в таблице*/
 	[FullName] [nchar](100) NOT NULL, /*ФИО или Название организации*/
 	[TYPE] [bit] NOT NULL, /*Тип Страховщика (0 - Физ лицо 1 - Юр лицо)*/
+	
 	/*Для Физ лиц*/
 	[SerNumPass] [nchar](20) NULL,/*Серия и номер паспорта*/
 	[SerNumVod] [nchar](20) NULL,/*Серия и номер водительских прав*/
 	[Who] [nchar](20) NULL,/*Кем выдан паспорт*/
 	[Adress] [nchar](50) NULL,/*Прописка*/
 	[When] [date] NULL,/*Когда выдан паспорт*/
+	
 	/*Для Юр лиц*/
 	[INN] [nchar](20) NULL,
 	[OGRN] [nchar](20) NULL,
@@ -33,13 +35,21 @@ GO
 /*Таблица Собственников*/
 CREATE TABLE [dbo].[Owner](
 	[Id] [nchar](20) NOT NULL PRIMARY KEY, /*id в таблице*/
-	[FullName] [nchar](100) NOT NULL, /*ФИО*/
+	[FullName] [nchar](100) NOT NULL, /*ФИО или Название организации*/
+	[TYPE] [bit] NOT NULL, /*Тип Страховщика (0 - Физ лицо 1 - Юр лицо)*/
+	
 	/*Для Физ лиц*/
 	[SerNumPass] [nchar](20) NULL,/*Серия и номер паспорта*/
 	[SerNumVod] [nchar](20) NULL,/*Серия и номер водительских прав*/
 	[Who] [nchar](20) NULL,/*Кем выдан паспорт*/
 	[Adress] [nchar](50) NULL,/*Прописка*/
 	[When] [date] NULL,/*Когда выдан паспорт*/
+	
+	/*Для Юр лиц*/
+	[INN] [nchar](20) NULL,
+	[OGRN] [nchar](20) NULL,
+	[PType] [nchar](20) NULL,/*Организационно правовая форма*/
+	[Schet] [nchar](20) NULL,/*Расчетный счет*/
 )
 GO
 GO
@@ -51,6 +61,7 @@ CREATE TABLE [dbo].[Faces](
 	[Id] [nchar](20) NOT NULL PRIMARY KEY, /*id в таблице*/
 	[FullName] [nchar](100) NOT NULL, /*ФИО*/
 	[TKey] [nchar](20) NOT NULL, /*Ключ для осуществления выборки лиц допущенных к управлению по опред полису ОСАГО*/
+	
 	/*Для Физ лиц*/
 	[SerNumPass] [nchar](20) NULL,/*Серия и номер паспорта*/
 	[SerNumVod] [nchar](20) NULL,/*Серия и номер водительских прав*/
